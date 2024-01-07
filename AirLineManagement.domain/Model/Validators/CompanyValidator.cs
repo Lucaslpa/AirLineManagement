@@ -26,7 +26,6 @@ namespace Testes.domain.Model.Validators
             RuleFor( x => x.Name )
               .NotEmpty().WithMessage( "Name deve ser preenchido" )
               .Length( 1 , 100 ).WithMessage( "Name deve ter entre 1 e 100 caracteres" )
-              .Matches( @"^[a-zA-Z0-9\s]*$" ).WithMessage( "Name deve ser alphanumérico" )
               .Must( StartWithCapitalLetter ).WithMessage( "Name deve começar com letra maiúscula" );
         }
 
