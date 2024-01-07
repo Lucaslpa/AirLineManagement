@@ -11,7 +11,7 @@ namespace AirLineManagement.tests.Validators
 
             // Arrange
             var faker = new Faker( "pt_BR" );
-            var phone = faker.Phone.PhoneNumber();
+            var phone = faker.Phone.PhoneNumberFormat();
 
             // Act
             var result = PhoneValidator.IsValid( phone );
