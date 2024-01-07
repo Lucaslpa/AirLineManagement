@@ -9,11 +9,9 @@ namespace Testes.domain.Validators
     public static class CpfCnpjValidator
     {
 
-      public static bool CpfValidator( string cpf)
+      public static bool CpfIsValid( string cpf)
         { 
 
-            if (cpf.Length != 11)
-                return false;
 
             int [] multiplicador1 = [10 , 9 , 8 , 7 , 6 , 5 , 4 , 3 , 2];
             int [] multiplicador2 = [11 , 10 , 9 , 8 , 7 , 6 , 5 , 4 , 3 , 2];
@@ -63,10 +61,9 @@ namespace Testes.domain.Validators
         }
 
 
-        public static bool CnpjValidator( string cnpj )
+        public static bool CnpjIsValid( string cnpj )
         {
-            if (cnpj.Length != 14)
-                    return false;
+        
     
                 int [] multiplicador1 = [5 , 4 , 3 , 2 , 9 , 8 , 7 , 6 , 5 , 4 , 3 , 2];
                 int [] multiplicador2 = [6 , 5 , 4 , 3 , 2 , 9 , 8 , 7 , 6 , 5 , 4 , 3 , 2];

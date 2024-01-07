@@ -34,7 +34,7 @@ namespace Testes.domain.Model.Validators
         {
             RuleFor( x => x.Cnpj )
               .NotEmpty().WithMessage( "Cnpj deve ser preenchido" )
-              .Must( CpfCnpjValidator.CnpjValidator ).WithMessage( "Cnpj inválido" );
+              .Must( CpfCnpjValidator.CnpjIsValid ).WithMessage( "Cnpj inválido" );
         }   
 
         private void AddressValidation()
@@ -49,7 +49,7 @@ namespace Testes.domain.Model.Validators
         {  
                RuleFor( x => x.Phone )
               .NotEmpty().WithMessage( "Phone deve ser preenchido" )
-              .Must( PhoneValidator.Validate ).WithMessage( "Phone inválido" );
+              .Must( PhoneValidator.IsValid ).WithMessage( "Phone inválido. Deve ter a seguinte estrutura. Ex: (XX) 91234-5678" );
         }
 
         private void EmailValidation()
