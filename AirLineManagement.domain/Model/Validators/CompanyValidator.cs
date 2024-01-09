@@ -40,8 +40,7 @@ namespace Testes.domain.Model.Validators
         {
             RuleFor( x => x.Address )
               .NotEmpty().WithMessage( "Address deve ser preenchido" )
-              .Length( 1 , 100 ).WithMessage( "Address deve ter entre 1 e 100 caracteres" )
-              .Matches( @"^[a-zA-Z0-9\s]*$" ).WithMessage( "Address deve ser alphanumérico" );
+              .Length( 1 , 100 ).WithMessage( "Address deve ter entre 1 e 100 caracteres" );
         }
 
        private void PhoneValidation()
