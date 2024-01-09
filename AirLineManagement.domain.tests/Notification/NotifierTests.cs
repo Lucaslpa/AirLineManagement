@@ -24,5 +24,22 @@ namespace AirLineManagement.tests.Notification
             _notifier.GetNotifications().First().Message.Should().Be( message1 );
             _notifier.GetNotifications()[1].Message.Should().Be( message2 );
         }
+
+        [Fact]
+        public void Should_return_if_has_notification_correctly()
+        {
+            //Arrange
+            IEnumerable<NotificationWarning> warnings = [
+                new NotificationWarning( "Teste" ),
+                new NotificationWarning( "Teste2" )
+            ];
+
+            //Act
+            _notifier.AddNotifications( warnings );
+
+            //Assert
+            _notifier.HasNotifications().Should().BeTrue();
+            
+        }
     }
 }
