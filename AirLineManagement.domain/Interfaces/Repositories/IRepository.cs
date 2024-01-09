@@ -15,7 +15,7 @@ namespace Testes.domain.Interfaces.Repositories
         public Task Delete(T entity);
         public Task Delete( Guid id );
         public Task<T> GetById( Guid id );
-        public Task<IEnumerable<T>> Search( Expression<Func<Company , bool>> expression );
+        public Task<IEnumerable<T>> Search( Expression<Func<T , bool>> expression );
         public Task<IEnumerable<T>> GetAll();
     }
 
