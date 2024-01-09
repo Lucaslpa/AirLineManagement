@@ -2,6 +2,7 @@
 
 using AirLineManagement.domain.Services;
 using Moq;
+using Moq.AutoMock;
 using Testes.domain.Interfaces;
 using Testes.domain.Interfaces.Repositories;
 using Testes.domain.Model;
@@ -17,21 +18,39 @@ namespace AirLineManagement.tests.Services
 
 
         [Fact]
-       public async Task Should_add_company_correctly()
+       public async Task Should_add_valid_company_correctly()
         {
             //Arrange
             var company = _companyFixture.CreateValidCompany();
-            var mockCompanyRepository = new Mock<ICompanyRepository>();
-            var mockNotifier = new Mock<INotifier>(); 
-            var companyService = new CompanyService(mockCompanyRepository.Object, mockNotifier .Object);
+            var mocker = new AutoMocker();
+            var companyService = mocker.CreateInstance<CompanyService>();
 
             //act
             var result = await companyService.Add(company);
 
             //Assert
-            mockCompanyRepository.Verify(r => r.Add(company), Times.Once);
+            mocker.GetMock<ICompanyRepository>().Verify(r => r.Add(company), Times.Once);
             Assert.True(result);
         }
+
+
+        [Fact]
+        public async Task Should_not_add_valid_company_correctly()
+        {
+            //Arrange
+            var company = _companyFixture.CreateValidCompany();
+            var mockCompanyRepository = new Mock<ICompanyRepository>();
+            var mockNotifier = new Mock<INotifier>();
+            var companyService = new CompanyService( mockCompanyRepository.Object , mockNotifier.Object );
+
+            //act
+            var result = await companyService.Add( company );
+
+            //Assert
+            mockCompanyRepository.Verify( r => r.Add( company ) , Times.Once );
+            Assert.True( result );
+        }
+
 
     }
 }
