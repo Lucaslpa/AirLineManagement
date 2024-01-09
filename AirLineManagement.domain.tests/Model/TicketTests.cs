@@ -37,7 +37,7 @@ namespace Testes.domain.tests.Model
             ticket.AddLuggage( luggage );
          
 
-            var totalPrice = flight.Price + flight.CarryOnLuggagePrice;
+            var totalPrice = Math.Round( flight.Price + flight.CarryOnLuggagePrice , 2);
 
             // Assert
             totalPrice.Should().Be( ticket.TotalPrice );
@@ -58,7 +58,7 @@ namespace Testes.domain.tests.Model
             ticket.AddLuggage( luggage );
        
 
-            var totalPrice = flight.Price + flight.CheckedLuggagePrice;
+            var totalPrice = Math.Round( flight.Price + flight.CheckedLuggagePrice, 2 );
 
             // Assert
             totalPrice.Should().Be( ticket.TotalPrice );
@@ -80,10 +80,9 @@ namespace Testes.domain.tests.Model
             ticket.AddLuggage( checkedLuggage );
             ticket.AddLuggage( carryOnLuggage );
 
-            var totalPrice = flight.Price + flight.CheckedLuggagePrice + flight.CarryOnLuggagePrice;
+            var totalPrice = Math.Round( flight.Price + flight.CheckedLuggagePrice + flight.CarryOnLuggagePrice , 2);
             // Assert
-            totalPrice.Should().Be( ticket.TotalPrice );
-
+            ticket.TotalPrice.Should().Be( totalPrice );
         }
     }
 }

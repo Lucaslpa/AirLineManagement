@@ -24,7 +24,7 @@ namespace AirLineManagement.tests.Model
             var flight = _flightFixture.CreateValidFlight( company );
 
             //Assert
-            flight.TotalSeats.Should().Be( flight.Seats.Count );
+            flight.Seats.Count.Should().Be( flight.TotalSeats );
         }
 
     }

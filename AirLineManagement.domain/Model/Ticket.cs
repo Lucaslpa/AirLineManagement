@@ -25,6 +25,7 @@ namespace Testes.domain.Model
                 }
             }
             TotalPrice += Flight.Price;
+            TotalPrice = Math.Round(TotalPrice, 2);
         }
 
         public void AddLuggage(Luggage luggage)

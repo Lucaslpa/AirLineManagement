@@ -10,8 +10,5 @@ namespace Testes.domain.Interfaces.Repositories
     public interface ICompanyRepository : IRepository<Company>
     {
 
-        public Task<bool> Add( Company entity );
-
-
     }
 }

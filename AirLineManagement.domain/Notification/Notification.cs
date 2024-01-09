@@ -1,5 +1,5 @@
 ﻿
-namespace Testes.domain.Notifications
+namespace Testes.domain.Notification
 {
     public class NotificationWarning( string message )
     {

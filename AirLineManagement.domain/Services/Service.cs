@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using Testes.domain.Interfaces;
 using Testes.domain.Interfaces.Services;
 using Testes.domain.Model;
-using Testes.domain.Notifications;
+using Testes.domain.Notification;
 
 namespace AirLineManagement.domain.Services
 {
