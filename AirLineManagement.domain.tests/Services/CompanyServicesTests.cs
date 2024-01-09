@@ -39,16 +39,73 @@ namespace AirLineManagement.tests.Services
         {
             //Arrange
             var company = _companyFixture.CreateInvalidCompany();
-            var mockCompanyRepository = new Mock<ICompanyRepository>();
-            var mockNotifier = new Mock<INotifier>();
-            var companyService = new CompanyService( mockCompanyRepository.Object , mockNotifier.Object );
+            var mocker = new AutoMocker();
+
+            var companyService = mocker.CreateInstance<CompanyService>();
 
             //act
             var result = await companyService.Add( company );
 
             //Assert
-            mockCompanyRepository.Verify( r => r.Add( company ) , Times.Never );
+            mocker.GetMock<ICompanyRepository>().Verify( r => r.Add( company ) , Times.Never );
             Assert.False( result );
+        }
+
+        [Fact]
+        public async Task Should_update_valid_company_correctly()
+        {
+            //Arrange
+            var company = _companyFixture.CreateValidCompany();
+            var mocker = new AutoMocker();
+
+            var companyService = mocker.CreateInstance<CompanyService>();
+
+            //act
+            var result = await companyService.Update( company );
+
+            //Assert
+            mocker.GetMock<ICompanyRepository>().Verify( r => r.Update( company ) , Times.Once );
+            Assert.True( result );
+        }
+
+        [Fact]
+        public async Task Should_not_update_invalid_company()
+        {
+            //Arrange
+            var company = _companyFixture.CreateInvalidCompany();
+            var mocker = new AutoMocker();
+
+            var companyService = mocker.CreateInstance<CompanyService>();
+
+            //act
+            var result = await companyService.Update( company );
+
+            //Assert
+            mocker.GetMock<ICompanyRepository>().Verify( r => r.Update( company ) , Times.Never );
+            Assert.False( result );
+        }
+
+
+
+        [Fact]
+        public async Task Should_delete_valid_company()
+        {
+            //Arrange
+            var company = _companyFixture.CreateValidCompany();
+            var mocker = new AutoMocker();
+
+            var companyService = mocker.CreateInstance<CompanyService>();
+
+            //act
+            var result = await companyService.Delete( company );
+            var result2 = await companyService.Delete( company.Id );
+
+
+            //Assert
+            mocker.GetMock<ICompanyRepository>().Verify( r => r.Delete( company ) , Times.Once );
+            mocker.GetMock<ICompanyRepository>().Verify( r => r.Delete( company.Id ) , Times.Once );
+
+            Assert.True( result );
         }
 
 
