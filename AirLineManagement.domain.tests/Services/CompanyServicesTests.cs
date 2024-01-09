@@ -38,7 +38,7 @@ namespace AirLineManagement.tests.Services
         public async Task Should_not_add_valid_company_correctly()
         {
             //Arrange
-            var company = _companyFixture.CreateValidCompany();
+            var company = _companyFixture.CreateInvalidCompany();
             var mockCompanyRepository = new Mock<ICompanyRepository>();
             var mockNotifier = new Mock<INotifier>();
             var companyService = new CompanyService( mockCompanyRepository.Object , mockNotifier.Object );
@@ -47,8 +47,8 @@ namespace AirLineManagement.tests.Services
             var result = await companyService.Add( company );
 
             //Assert
-            mockCompanyRepository.Verify( r => r.Add( company ) , Times.Once );
-            Assert.True( result );
+            mockCompanyRepository.Verify( r => r.Add( company ) , Times.Never );
+            Assert.False( result );
         }
 
 

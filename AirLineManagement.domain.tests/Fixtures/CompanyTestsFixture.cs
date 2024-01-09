@@ -27,11 +27,11 @@ namespace Testes.domain.tests.Fixtures
         public Company CreateInvalidCompany()
         {
             var faker = new Faker( "pt_BR" );
-            return new Company( faker.Company.CompanyName() ,
-                                faker.Company.Cnpj() ,
-                                faker.Address.StreetAddress() ,
-                                 faker.Phone.PhoneNumber() ,
-                                 faker.Internet.Email()
+            return new Company( "sadad" ,
+                                "334f2g" ,
+                                "ff" ,
+                                 "frt3432" ,
+                                 "lsdla@"
                                  );
         }
 
