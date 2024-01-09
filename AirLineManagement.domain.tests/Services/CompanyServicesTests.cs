@@ -4,7 +4,8 @@ using AirLineManagement.domain.Services;
 using Moq;
 using Moq.AutoMock;
 using System.Linq.Expressions;
-using Testes.domain.Interfaces;
+using FluentAssertions;
+
 using Testes.domain.Interfaces.Repositories;
 using Testes.domain.Model;
 using Testes.domain.tests.Fixtures;
@@ -31,7 +32,7 @@ namespace AirLineManagement.tests.Services
 
             //Assert
             mocker.GetMock<ICompanyRepository>().Verify(r => r.Add(company), Times.Once);
-            Assert.True(result);
+            result.Should().BeTrue();
         }
 
 
@@ -49,7 +50,7 @@ namespace AirLineManagement.tests.Services
 
             //Assert
             mocker.GetMock<ICompanyRepository>().Verify( r => r.Add( company ) , Times.Never );
-            Assert.False( result );
+            result.Should().BeFalse();
         }
 
         [Fact]
@@ -70,7 +71,7 @@ namespace AirLineManagement.tests.Services
 
             //Assert
             mocker.GetMock<ICompanyRepository>().Verify( r => r.Add( company ) , Times.Never );
-            Assert.False( result );
+            result.Should().BeFalse();
         }
 
         [Fact]
@@ -87,7 +88,7 @@ namespace AirLineManagement.tests.Services
 
             //Assert
             mocker.GetMock<ICompanyRepository>().Verify( r => r.Update( company ) , Times.Once );
-            Assert.True( result );
+            result.Should().BeTrue();
         }
 
         [Fact]
@@ -104,10 +105,8 @@ namespace AirLineManagement.tests.Services
 
             //Assert
             mocker.GetMock<ICompanyRepository>().Verify( r => r.Update( company ) , Times.Never );
-            Assert.False( result );
+            result.Should().BeFalse();
         }
-
-
 
         [Fact]
         public async Task Should_delete_valid_company()
@@ -127,9 +126,26 @@ namespace AirLineManagement.tests.Services
             mocker.GetMock<ICompanyRepository>().Verify( r => r.Delete( company ) , Times.Once );
             mocker.GetMock<ICompanyRepository>().Verify( r => r.Delete( company.Id ) , Times.Once );
 
-            Assert.True( result );
+            result.Should().BeTrue();
+            result2.Should().BeTrue();
         }
 
+        [Fact]
+        public async Task Should_not_delete_a_invalid_company()
+        {
+            //Arrange
+            var company = _companyFixture.CreateInvalidCompany();
+            var mocker = new AutoMocker();
+
+            var companyService = mocker.CreateInstance<CompanyService>();
+
+            //act
+            var result = await companyService.Delete( company );
+
+            //Assert
+            mocker.GetMock<ICompanyRepository>().Verify( r => r.Delete( company ) , Times.Never );
+            result.Should().BeFalse();
+        }
 
     }
 }
