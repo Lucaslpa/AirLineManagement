@@ -13,7 +13,7 @@ using Testes.domain.tests.Fixtures;
 namespace AirLineManagement.tests.Services
 {
     [Collection(nameof( CompanyFixtureCollection ) )]
-    public class CompanyServicesTests(CompanyTestsFixture companyTestsFixture)
+    public class CompanyServiceTests(CompanyTestsFixture companyTestsFixture)
     {
 
         private readonly CompanyTestsFixture _companyFixture = companyTestsFixture;
