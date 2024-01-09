@@ -18,7 +18,10 @@ namespace Testes.domain.Validators
         private static Regex MyRegex()
         {
             // Aceita padrões como: (XX) 1234-5678 ou (XX) 91234-5678 ou XX 1234-5678 ou XX 91234-5678
-            return new Regex( @"^(\(\d{2}\)|\d{2})\s?\d{4,5}-\d{4}$" );
+            return MyRegex1();
         }
+
+        [GeneratedRegex( @"^(\(\d{2}\)|\d{2})\s?\d{4,5}-\d{4}$" )]
+        private static partial Regex MyRegex1();
     }
 }
