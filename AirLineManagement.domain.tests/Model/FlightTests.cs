@@ -1,5 +1,6 @@
 ﻿
 
+using FluentAssertions;
 using Testes.domain.tests.Fixtures;
 
 namespace AirLineManagement.tests.Model
@@ -23,8 +24,7 @@ namespace AirLineManagement.tests.Model
             var flight = _flightFixture.CreateValidFlight( company );
 
             //Assert
-            Assert.Equal( flight.TotalSeats , flight.Seats.Count );
-
+            flight.TotalSeats.Should().Be( flight.Seats.Count );
         }
 
     }

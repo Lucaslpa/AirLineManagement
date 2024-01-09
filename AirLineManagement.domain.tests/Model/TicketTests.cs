@@ -1,7 +1,5 @@
-﻿using Testes.domain.Enums;
-using Testes.domain.Model;
-using Testes.domain.tests.Fixtures;
-using Xunit;
+﻿using Testes.domain.tests.Fixtures;
+using FluentAssertions;
 
 namespace Testes.domain.tests.Model
 {
@@ -42,7 +40,7 @@ namespace Testes.domain.tests.Model
             var totalPrice = flight.Price + flight.CarryOnLuggagePrice;
 
             // Assert
-            Assert.Equal( totalPrice , ticket.TotalPrice , 2 ); // Comparação com precisão de 2 casas decimais
+            totalPrice.Should().Be( ticket.TotalPrice );
         }
 
         [Fact]
@@ -63,7 +61,7 @@ namespace Testes.domain.tests.Model
             var totalPrice = flight.Price + flight.CheckedLuggagePrice;
 
             // Assert
-            Assert.Equal( totalPrice , ticket.TotalPrice , 2 ); // Comparação com precisão de 2 casas decimais
+            totalPrice.Should().Be( ticket.TotalPrice );
         }
 
         [Fact]
@@ -84,8 +82,8 @@ namespace Testes.domain.tests.Model
 
             var totalPrice = flight.Price + flight.CheckedLuggagePrice + flight.CarryOnLuggagePrice;
             // Assert
+            totalPrice.Should().Be( ticket.TotalPrice );
 
-            Assert.Equal( totalPrice  , ticket.TotalPrice  , 2 ); // Comparação com precisão de 2 casas decimais
         }
     }
 }

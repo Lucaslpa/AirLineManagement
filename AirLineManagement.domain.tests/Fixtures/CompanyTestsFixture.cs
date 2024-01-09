@@ -26,7 +26,6 @@ namespace Testes.domain.tests.Fixtures
 
         public Company CreateInvalidCompany()
         {
-            var faker = new Faker( "pt_BR" );
             return new Company( "sadad" ,
                                 "334f2g" ,
                                 "ff" ,

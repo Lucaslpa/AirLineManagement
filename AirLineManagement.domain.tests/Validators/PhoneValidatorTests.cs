@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using FluentAssertions;
 using Testes.domain.Validators;
 
 namespace AirLineManagement.tests.Validators
@@ -17,7 +18,7 @@ namespace AirLineManagement.tests.Validators
             var result = PhoneValidator.IsValid( phone );
 
             // Assert
-            Assert.True( result );
+            result.Should().BeTrue();   
         }
 
         [Fact]
@@ -30,7 +31,7 @@ namespace AirLineManagement.tests.Validators
             var result = PhoneValidator.IsValid( phone );
 
             // Assert
-            Assert.False( result );
+            result.Should().BeFalse();
         }
     }
 }

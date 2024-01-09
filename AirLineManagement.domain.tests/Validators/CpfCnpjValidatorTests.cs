@@ -2,6 +2,7 @@
 
 using Bogus;
 using Bogus.Extensions.Brazil;
+using FluentAssertions;
 using Testes.domain.Validators;
 
 namespace AirLineManagement.tests.Validators
@@ -19,7 +20,7 @@ namespace AirLineManagement.tests.Validators
             var result = CpfCnpjValidator.CpfIsValid( cpf );
 
             //Assert
-            Assert.False( result );
+            result.Should().BeFalse();
         }
 
         [Fact]
@@ -33,7 +34,7 @@ namespace AirLineManagement.tests.Validators
             var result = CpfCnpjValidator.CpfIsValid( cpf );
 
             //Assert
-            Assert.True( result );
+            result.Should().BeTrue();
         }
 
         [Fact]
@@ -46,7 +47,7 @@ namespace AirLineManagement.tests.Validators
             var result = CpfCnpjValidator.CnpjIsValid( cnpj );
 
             //Assert
-            Assert.False( result );
+            result.Should().BeFalse();
         }
 
         [Fact]
@@ -60,9 +61,7 @@ namespace AirLineManagement.tests.Validators
             var result = CpfCnpjValidator.CnpjIsValid( cnpj );
 
             //Assert
-            Assert.True( result );
+            result.Should().BeTrue();
         }
-
-
     }
 }
