@@ -6,7 +6,7 @@ namespace Testes.domain.Model
     public class Flight : Entity   
     {
         public Flight( string origin , string destiny , double price , double maxCarryOnLuggageWeight, 
-                double maxCheckedLuggageWeight , Company airline , DateTime departureTime,
+                double maxCheckedLuggageWeight , Company company , DateTime departureTime,
                 double carryOnLuggagePrice , int flightTimeInHours , int totalSeats )
         {
             Origin = origin;
@@ -20,10 +20,10 @@ namespace Testes.domain.Model
             MaxLuggageWeight = maxCarryOnLuggageWeight + maxCheckedLuggageWeight;
             CarryOnLuggagePrice = carryOnLuggagePrice;
             CheckedLuggagePrice = carryOnLuggagePrice * 2;
-            AirLine = airline;
-            Seats = new List<Seat>();
+            Company = company;
+            Seats = [];
             Passengers = new List<User>();
-            Luggages = new List<Luggage>();
+            Luggages = [];
             Arrive = departureTime.AddHours( flightTimeInHours );
             CreateSeats();
         }
@@ -45,7 +45,7 @@ namespace Testes.domain.Model
         public double MaxLuggageWeight { get; private set; } 
         public double CarryOnLuggagePrice { get; private set; }
         public double CheckedLuggagePrice { get; private set; } 
-        public Company AirLine { get; private set; } 
+        public Company Company { get; private set; } 
         public List<Seat> Seats { get; private set; } = new List<Seat>();
         public IEnumerable<User> Passengers { get; private set; } = new List<User>();
         public List<Luggage> Luggages { get; private set; } = new List<Luggage>();

@@ -6,7 +6,7 @@ using Testes.domain.tests.Fixtures;
 namespace AirLineManagement.tests.Model
 {
 
-    [Collection( nameof( FlightTestsFixtureCollection ) )]
+    [Collection( nameof( FlightFixtureCollection ) )]
     public class FlightTests( FlightTestsFixture flightFixture , CompanyTestsFixture companyFixture )
     { 
 
