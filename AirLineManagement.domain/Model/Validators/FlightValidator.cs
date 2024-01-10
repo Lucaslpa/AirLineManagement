@@ -56,6 +56,10 @@ namespace AirLineManagement.domain.Model.Validators
                 .WithMessage( "TotalSeats deve ser maior que 20" )
                 .NotEmpty()
                 .WithMessage( "TotalSeats deve ser preenchido" );
+
+            RuleFor( flight => flight.Company )
+                .NotEmpty()
+                .WithMessage( "Company deve ser preenchido" );
         }
     }
 }
