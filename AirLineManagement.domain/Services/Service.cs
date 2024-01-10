@@ -25,7 +25,7 @@ namespace AirLineManagement.domain.Services
             Notifier.AddNotification( new NotificationWarning( message ) );
         }
 
-        public bool ModelIsValid( AbstractValidator<T> validator, T model ) 
+        public bool ModelIsValid<TM>( AbstractValidator<TM> validator , TM model ) 
         {
             var validaor = validator.Validate( model );
 
