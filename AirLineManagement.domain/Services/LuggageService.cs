@@ -23,7 +23,11 @@ namespace AirLineManagement.domain.Services
 
         public async Task<bool> Delete( Luggage entity )
         {
-            if (!ModelIsValid( new LuggageValidator() , entity )) return false;
+            if (
+            !ModelIsValid( new LuggageValidator() , entity ) ||
+            !ModelIsValid( new FlightValidator() , entity.Flight ) ||
+            !ModelIsValid( new UserValidator() , entity.Owner )) return false;
+
             await Repository.Delete( entity );
             return true;
         }
@@ -36,7 +40,11 @@ namespace AirLineManagement.domain.Services
 
         public async Task<bool> Update( Luggage entity )
         {
-            if (!ModelIsValid( new LuggageValidator() , entity )) return false;
+            if (
+            !ModelIsValid( new LuggageValidator() , entity ) ||
+            !ModelIsValid( new FlightValidator() , entity.Flight ) ||
+            !ModelIsValid( new UserValidator() , entity.Owner )) return false;
+
             await Repository.Update( entity );
             return true;
         }

@@ -21,7 +21,8 @@ namespace AirLineManagement.domain.Services
 
         public async Task<bool> Delete( Seat entity )
         {
-            if (!ModelIsValid( new SeatValidator() , entity )) return false;
+            if (!ModelIsValid( new SeatValidator() , entity ) || !ModelIsValid( new FlightValidator() , entity.Flight )) return false;
+
             await Repository.Delete( entity );
             return true;
         }
@@ -34,7 +35,8 @@ namespace AirLineManagement.domain.Services
 
         public async Task<bool> Update( Seat entity )
         {
-            if (!ModelIsValid( new SeatValidator() , entity )) return false;
+            if (!ModelIsValid( new SeatValidator() , entity ) || !ModelIsValid( new FlightValidator() , entity.Flight )) return false;
+
             await Repository.Update( entity );
             return true;
         }
