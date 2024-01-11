@@ -1,7 +1,5 @@
-﻿using Testes.domain.Enums;
-using Testes.domain.Model;
-using Testes.domain.tests.Fixtures;
-using Xunit;
+﻿using Testes.domain.tests.Fixtures;
+using FluentAssertions;
 
 namespace Testes.domain.tests.Model
 {
@@ -39,10 +37,10 @@ namespace Testes.domain.tests.Model
             ticket.AddLuggage( luggage );
          
 
-            var totalPrice = flight.Price + flight.CarryOnLuggagePrice;
+            var totalPrice = Math.Round( flight.Price + flight.CarryOnLuggagePrice , 2);
 
             // Assert
-            Assert.Equal( totalPrice , ticket.TotalPrice , 2 ); // Comparação com precisão de 2 casas decimais
+            totalPrice.Should().Be( ticket.TotalPrice );
         }
 
         [Fact]
@@ -60,10 +58,10 @@ namespace Testes.domain.tests.Model
             ticket.AddLuggage( luggage );
        
 
-            var totalPrice = flight.Price + flight.CheckedLuggagePrice;
+            var totalPrice = Math.Round( flight.Price + flight.CheckedLuggagePrice, 2 );
 
             // Assert
-            Assert.Equal( totalPrice , ticket.TotalPrice , 2 ); // Comparação com precisão de 2 casas decimais
+            totalPrice.Should().Be( ticket.TotalPrice );
         }
 
         [Fact]
@@ -82,10 +80,9 @@ namespace Testes.domain.tests.Model
             ticket.AddLuggage( checkedLuggage );
             ticket.AddLuggage( carryOnLuggage );
 
-            var totalPrice = flight.Price + flight.CheckedLuggagePrice + flight.CarryOnLuggagePrice;
+            var totalPrice = Math.Round( flight.Price + flight.CheckedLuggagePrice + flight.CarryOnLuggagePrice , 2);
             // Assert
-
-            Assert.Equal( totalPrice  , ticket.TotalPrice  , 2 ); // Comparação com precisão de 2 casas decimais
+            ticket.TotalPrice.Should().Be( totalPrice );
         }
     }
 }

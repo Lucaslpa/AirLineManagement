@@ -9,19 +9,19 @@ namespace Testes.domain.Validators
 {
     public static partial class PhoneValidator
     {
-        public static bool Validate( string phone )
+        public static bool IsValid( string phone )
         {
-
-            string digitsOnly = new( phone.Where( char.IsDigit ).ToArray() );
-
             Regex regex = MyRegex();
-
-            return regex.IsMatch( digitsOnly );
-
-
+            return regex.IsMatch( phone );
         }
 
-        [GeneratedRegex( @"^(\d{2}|\(\d{2}\))\s?\d{9}$" )]
-        private static partial Regex MyRegex();
+        private static Regex MyRegex()
+        {
+            // Aceita padrões como: (XX) 1234-5678 ou (XX) 91234-5678 ou XX 1234-5678 ou XX 91234-5678
+            return MyRegex1();
+        }
+
+        [GeneratedRegex( @"^(\(\d{2}\)|\d{2})\s?\d{4,5}-\d{4}$" )]
+        private static partial Regex MyRegex1();
     }
 }

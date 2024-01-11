@@ -1,6 +1,6 @@
 ﻿
 using Testes.domain.Interfaces;
-using Testes.domain.Notifications;
+using Testes.domain.Notification;
 
 namespace Testes.domain.Notification
 {

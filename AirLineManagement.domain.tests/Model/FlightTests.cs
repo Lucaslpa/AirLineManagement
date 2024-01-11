@@ -1,11 +1,12 @@
 ﻿
 
+using FluentAssertions;
 using Testes.domain.tests.Fixtures;
 
 namespace AirLineManagement.tests.Model
 {
 
-    [Collection( nameof( FlightTestsFixtureCollection ) )]
+    [Collection( nameof( FlightFixtureCollection ) )]
     public class FlightTests( FlightTestsFixture flightFixture , CompanyTestsFixture companyFixture )
     { 
 
@@ -23,8 +24,7 @@ namespace AirLineManagement.tests.Model
             var flight = _flightFixture.CreateValidFlight( company );
 
             //Assert
-            Assert.Equal( flight.TotalSeats , flight.Seats.Count );
-
+            flight.Seats.Count.Should().Be( flight.TotalSeats );
         }
 
     }
